@@ -4,9 +4,9 @@
 sed -i "s/<UPLOAD_MAX_SIZE>/$UPLOAD_MAX_SIZE/g" /etc/php7/php-fpm.conf /etc/nginx/nginx.conf
 sed -i "s/<MEMORY_LIMIT>/$MEMORY_LIMIT/g" /etc/php7/php-fpm.conf
 
-# Remove postfixadmin-change-password plugin if exist
-if [ -d "/rainloop/data/_data_/_default_/plugins/postfixadmin-change-password" ]; then
-  rm -rf /rainloop/data/_data_/_default_/plugins/postfixadmin-change-password
+# Remove rest-change-password plugin if exist
+if [ -d "/rainloop/data/_data_/_default_/plugins/rest-change-password" ]; then
+  rm -rf /rainloop/data/_data_/_default_/plugins/rest-change-password
 fi
 
 # Set log output to STDOUT if wanted (LOG_TO_STDOUT=true)
@@ -17,9 +17,9 @@ if [ "$LOG_TO_STDOUT" = true ]; then
   sed -i "s/.*error_log.*$/error_log = \/dev\/stdout/" /etc/php7/php-fpm.conf
 fi
 
-# Add postfixadmin-change-password plugin
+# Add rest-change-password plugin
 mkdir -p /rainloop/data/_data_/_default_/plugins/
-cp -r /usr/local/include/postfixadmin-change-password /rainloop/data/_data_/_default_/plugins/
+cp -r /usr/local/include/rest-change-password /rainloop/data/_data_/_default_/plugins/
 
 # Fix permissions
 chown -R $UID:$GID /rainloop/data /services /var/log /var/lib/nginx
